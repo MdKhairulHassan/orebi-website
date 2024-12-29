@@ -3,33 +3,60 @@ import Container from './components/Container'
 import Flex from './components/Flex'
 import Image from './components/Image'
 import Logo from './assets/Logo.png'
-import Menu from './components/Menu'
+import Menutext from './components/Menutext'
 import { HiBars3BottomLeft } from "react-icons/hi2";
 import { FaSearch, FaUser, FaShoppingCart, FaUndo } from "react-icons/fa";
 import { FaSortDown, Fa2 } from "react-icons/fa6";
 import { PiVanFill } from "react-icons/pi";
 import Heading from './components/Heading'
 import Anchor from './components/Anchor'
+import { useState } from 'react'
+import {Menu, X} from "lucide-react"
 
 function App() {
+
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <>
       {/* Header Part Start */}
       <div className='py-[30px] mobile:py-[10px] android:py-[10px] taplet:py-[20px]'>
         <Container className={'max-w-headerContainer'}>
-          <Flex>
-            <div className='w-LogoW android:w-[18%] mobile:w-[10%]'>
+          <Flex className={"mobile:justify-between items-center"}>
+            <div className='w-LogoW android:w-[18%] mobile:w-[20%]'>
               <Image imgSrc={Logo}/>
             </div>
-            <Flex className='w-MenuW android:w-[70%] mobile:w-[90%] pl-8 android:pl-0 mobile:justify-start'>
-              <Menu menuName={'Home'} className={'hover:font-bold hover:text-TextHColor'}/>
-              <Menu menuName={'Shop'} className={'hover:font-bold hover:text-TextHColor'}/>
-              <Menu menuName={'About'} className={'hover:font-bold hover:text-TextHColor'}/>
-              <Menu menuName={'Contacts'} className={'hover:font-bold hover:text-TextHColor'}/>
-              <Menu menuName={'Journal'} className={'hover:font-bold hover:text-TextHColor'}/>
+            
+            <div className='w-[15%]'>
+              <span className='hidden mobile:block' onClick={toggleNavbar}>
+                {isOpen ? <X/> : <Menu/>}
+              </span>
+              </div>
+             
+            <Flex className='w-MenuW block android:w-[70%] pl-8 android:pl-0 sticky mobile:absolute mobile:hidden mobile:top-[45px] mobile:left-[50%] mobile:bg-white mobile:z-10 mobile:translate-x-[-50%] mobile:pl-0 mobile:text-center mobile:w-full'>
+              <Menutext menuName={'Home'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'Shop'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'About'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'Contacts'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'Journal'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
             </Flex>
-          </Flex>
+
+            {isOpen && (
+              <Flex className='w-MenuW hidden android:w-[70%] pl-8 android:pl-0 sticky mobile:absolute mobile:block mobile:top-[45px] mobile:left-[50%] mobile:bg-white mobile:z-10 mobile:translate-x-[-50%] mobile:pl-0 mobile:text-center mobile:transition-all mobile:ease-in mobile:duration-500 mobile:w-full'>
+              <Menutext menuName={'Home'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'Shop'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'About'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'Contacts'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+              <Menutext menuName={'Journal'} className={'hover:font-bold hover:text-TextHColor mobile:hover:bg-slate-400 py-2'}/>
+            </Flex>
+            )}
+      
+            </Flex>
+
         </Container>
       </div>
       {/* Header Part End */}

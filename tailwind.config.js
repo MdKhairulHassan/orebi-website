@@ -26,7 +26,7 @@ export default {
         'laptopContainer': '978px',
         'tapletContainer': '748px',
         'androidContainer': '556px',
-        'mobileContainer': '300px',
+        'mobileContainer': '310px',
       },
       width: {
         'LogoW': '30%',
